@@ -1,15 +1,38 @@
+import re
+
 def validate_email(email):
-    return 
+    regex = r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,7}"
+
+    if not re.fullmatch(regex, email):
+        print("\nInvalid email. Please enter valid email, with '@' and '.'")
+        return False
+    return True
 
 def validate_phone_number(phone_number):
-    return
+    if not phone_number.isdigit() or len(phone_number) != 10:
+        print("\nInvalid phone number. Please enter a 10-digit number.")
+        return False
+    return True
 
-def validate_date(date_string):
-    return
+def validate_date(date):
+    try:
+        year, month, day = map(int, date.split('-'))
+        if not (1 <= month <= 12 and 1 <= day <= 31):
+            raise ValueError
+    except ValueError:
+        print("\nInvalid date format. Please use YYYY-MM-DD.")
+        return False
+    return True
 
 def validate_book_title(title):
-    return
+    if not title:
+        print("\nBook title cannot be empty.")
+        return False
+    return True
 
 def validate_member_name(name):
-    return
+    if not name:
+        print("\nMember name cannot be empty.")
+        return False
+    return True
 
