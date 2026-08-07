@@ -6,7 +6,7 @@ def display_book(book):
     print(f"Author: {book['author']}")
     print(f"Genre: {book['genre']}")
     print(f"\nStatus: {book['status']}")
-    print("=" * 45)
+    print("\n=" * 45)
 
 def display_member(member):
     print("=" * 45)
@@ -15,7 +15,7 @@ def display_member(member):
     print(f"Name: {member['name']}")
     print(f"Email: {member['email']}")
     print(f"\nStatus: {member['status']}")
-    print("=" * 45)
+    print("\n=" * 45)
 
 def display_loan(loan, books, members):
     print("=" * 45)
@@ -25,7 +25,7 @@ def display_loan(loan, books, members):
     print(f"Member: {members[loan['member_id']]['name']}")
     print(f"Due Date: {loan['due_date']}")
     print(f"\nStatus: {loan['status']}")
-    print("=" * 45)
+    print("\n=" * 45)
 
 def display_menu():
     print("=" * 45)
@@ -43,9 +43,9 @@ def display_menu():
 
     print("9. Display Summary")
     print("10. Exit")
-    print("=" * 45)
+    print("\n=" * 45)
 
 def display_welcome_message():
     print("=" * 45)
     print("\nWelcome to the Library Management System!")
-    print("=" * 45)
+    print("\n=" * 45)

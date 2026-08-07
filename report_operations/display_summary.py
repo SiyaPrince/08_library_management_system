@@ -4,4 +4,4 @@ def display_summary(books, members, loans):
     print(f"Total Books: {len(books)}")
     print(f"Total Members: {len(members)}")
     print(f"\nTotal Loans: {len(loans)}")
-    print("=" * 45)
+    print("\n=" * 45)

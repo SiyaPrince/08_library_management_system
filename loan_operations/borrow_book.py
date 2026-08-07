@@ -24,6 +24,6 @@ def borrow_book(books, members, loans):
     # Change book status to Borrowed
 
     # Display success
-    print(f"Book '{books[book_id]['title']}' has been successfully borrowed by member '{members[member_id]['name']}'.")
+    print(f"Book '{books['title']}' has been successfully borrowed by member '{members['name']}'.")
 
     return
