@@ -4,4 +4,3 @@ def view_members(members):
     print("\nMembers: ")
     print(members)
     print("=" * 45)
-    
