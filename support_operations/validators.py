@@ -41,3 +41,9 @@ def validate_author_name(name):
         print("\nAuthor name cannot be empty.")
         return False
     return True
+
+def validate_genre(genre):
+    if not genre:
+        print("\nGenre cannot be empty.")
+        return False
+    return True
