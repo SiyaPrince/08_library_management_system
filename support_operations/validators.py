@@ -36,3 +36,8 @@ def validate_member_name(name):
         return False
     return True
 
+def validate_author_name(name):
+    if not name:
+        print("\nAuthor name cannot be empty.")
+        return False
+    return True
