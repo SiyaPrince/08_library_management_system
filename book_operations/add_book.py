@@ -1,5 +1,6 @@
 from support_operations.displayers import display_book
 from support_operations.validators import validate_author_name, validate_book_title, validate_genre
+from support_operations.generate_id import generate_next_id
 
 def get_valid_title():
      while True:
@@ -23,15 +24,27 @@ def get_valid_genre():
              print("Genre cannot be empty.")
 
 
-def book_exists(books: list[dict], title : str, author: str, genre: str) -> bool:
-    """Return True if a phone number or supplied email already exists."""
-    normalized_title = title.lower()
-    normalized_author = author.lower()
-    normalized_genre = genre.lower()
-    for contact in books:
-        if normalized_title and normalized_author and normalized_genre:
+def book_exists(
+    books: list[dict],
+    title: str,
+    author: str,
+    genre: str
+) -> bool:
+    """Return True if the same book already exists."""
+
+    normalized_title = title.strip().lower()
+    normalized_author = author.strip().lower()
+    normalized_genre = genre.strip().lower()
+
+    for book in books:
+        if (
+            book["title"].strip().lower() == normalized_title
+            and book["author"].strip().lower() == normalized_author
+            and book["genre"].strip().lower() == normalized_genre
+        ):
             print("Book already exists.")
             return True
+
     return False
 
 def add_book(books):
@@ -45,9 +58,11 @@ def add_book(books):
     if book_exists(books, title,author, genre):
          return
 
+    book_id = generate_next_id(books)
+
     # Add to dictionary
     book = {
-        "book_id": id,
+        "book_id": book_id,
         "title": title,
         "author": author,
         "genre": genre,
