@@ -62,7 +62,7 @@ def add_book(books):
 
     # Add to dictionary
     book = {
-        "book_id": book_id,
+        "id": book_id,
         "title": title,
         "author": author,
         "genre": genre,
