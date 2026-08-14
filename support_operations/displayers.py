@@ -20,8 +20,8 @@ def display_member(member):
 def display_loan(loan, books, members):
     print("=" * 45)
     print("\nLoan Details:")
-    print(f"Book: {books[loan['book_id']]['title']}")
-    print(f"Member: {members[loan['member_id']]['name']}")
+    print(f"Book: {books[loan['title']]}")
+    print(f"Member: {members[loan['name']]}")
     print(f"Due Date: {loan['due_date']}")
     print(f"\nStatus: {loan['status']}")
     print("=" * 45)
