@@ -1,5 +1,30 @@
+from book_operations.view_book import view_books
+
 def select_book(books):
-    return books[0] if books else None
+    if not books:
+        print("Can't select in empty collection")
+        return
+
+    view_books(books)
+
+    selection = input("Select book you want: ").strip()
+
+    if selection.isdigit():
+        print("Selection not a digit")
+        return
+
+    selection = int(selection)
+
+    if selection < 1 or selection > len(books):
+        print("\nInvalid selection. Please enter selection.")
+        return
+
+    index = selection - 1
+
+    return books[index]
+
+
+    
 
 def select_member(members):
     return members[0] if members else None
