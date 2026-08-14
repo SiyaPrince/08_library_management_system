@@ -1,42 +1,78 @@
 from book_operations.view_book import view_books
+from member_operations.view_members import view_members
+from loan_operations.view_loans import view_active_loans
 
 def select_book(books):
     if not books:
-        print("Can't select in empty collection")
+        print("Can't select from an empty collection.")
         return
 
     view_books(books)
 
     selection = input("Select book you want: ").strip()
 
-    if selection.isdigit():
-        print("Selection not a digit")
+    if not selection.isdigit():
+        print("Selection must be a number.")
         return
 
     selection = int(selection)
 
     if selection < 1 or selection > len(books):
-        print("\nInvalid selection. Please enter selection.")
+        print("Invalid selection. Please choose a valid number.")
         return
 
     index = selection - 1
 
     return books[index]
 
-
-    
-
 def select_member(members):
-    return members[0] if members else None
+    if not members:
+        print("Can't select from an empty collection.")
+        return
 
-def select_loan(loans):
-    return loans[0] if loans else None
+    view_members(members)
 
+    selection = input("Select member you want: ").strip()
 
-# Check collection isn't empty
-# Display numbered records
-# Ask user for a selection
-# Validate numeric input
-# Validate range
-# Convert selection to index
-# Return selected dictionary
+    if not selection.isdigit():
+        print("Selection must be a number.")
+        return
+
+    selection = int(selection)
+
+    if selection < 1 or selection > len(members):
+        print("Invalid selection. Please choose a valid number.")
+        return
+
+    index = selection - 1
+
+    return members[index]
+
+def select_loan(loans, books, members):
+    active_loans = []
+
+    for loan in loans:
+        if loan["status"] == "Active":
+            active_loans.append(loan)
+
+    if not active_loans:
+        print("No active loans available.")
+        return
+
+    view_active_loans(active_loans, books, members)
+
+    selection = input("Select book loan you want: ").strip()
+
+    if not selection.isdigit():
+        print("Selection must be a number.")
+        return
+
+    selection = int(selection)
+
+    if selection < 1 or selection > len(active_loans):
+        print("Invalid selection. Please choose a valid number.")
+        return
+
+    index = selection - 1
+
+    return active_loans[index]
