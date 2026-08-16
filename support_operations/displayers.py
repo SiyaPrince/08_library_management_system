@@ -1,6 +1,7 @@
 def display_book(book):
     print("=" * 45)
     print("\nBook Details:")
+    print(f"Book ID: {book['id']}")
     print(f"Title: {book['title']}")
     print(f"Author: {book['author']}")
     print(f"Genre: {book['genre']}")
@@ -11,6 +12,7 @@ def display_book(book):
 def display_member(member):
     print("=" * 45)
     print("\nMember Details:")
+    print(f"Member ID: {member['id']}")
     print(f"Name: {member['name']}")
     print(f"Email: {member['email']}")
     print(f"\nStatus: {member['status']}")
@@ -20,6 +22,7 @@ def display_member(member):
 def display_loan(loan, books, members):
     print("=" * 45)
     print("\nLoan Details:")
+    print(f"Loan ID: {loan['id']}")
     print(f"Book: {books[loan['title']]}")
     print(f"Member: {members[loan['name']]}")
     print(f"Due Date: {loan['due_date']}")
