@@ -6,7 +6,9 @@ def view_members(members: list[dict]) -> None:
         print("No members found.")
         return
 
-    print(f"\nmembers: ({len(members)})")
+    print(f"\nMembers: ({len(members)})")
     print("=" * 45)
+
     for number, member in enumerate(members, start=1):
-        display_member(member, number)
+        print(f"\nMember {number}")
+        display_member(member)

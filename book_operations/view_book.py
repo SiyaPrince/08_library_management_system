@@ -6,7 +6,9 @@ def view_books(books: list[dict]) -> None:
         print("No books found.")
         return
 
-    print(f"\nBooks: ({len(books)})")
+    print(f"\nbooks: ({len(books)})")
     print("=" * 45)
+
     for number, book in enumerate(books, start=1):
-        display_book(book, number)
+        print(f"\nbook {number}")
+        display_book(book)
