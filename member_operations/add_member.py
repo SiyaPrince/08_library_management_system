@@ -47,8 +47,6 @@ def add_member(members):
 
     member_id = generate_next_id(members)
 
-    member_id = generate_next_id(members)
-
     # Add to dictionary
     member = {
         "id": member_id,
