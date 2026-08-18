@@ -34,7 +34,7 @@ def borrow_book(books, members, loans):
     display_member(member)
     
     # Confirm member is Active
-    if member['status'] == 'active':
+    if member['status'] == 'Active':
            return
 
     # Select book
@@ -45,7 +45,7 @@ def borrow_book(books, members, loans):
     
     
     # Confirm book is Available
-    if book['status'] == 'available':
+    if book['status'] == 'Available':
                return
 
     # Check member is not already borrowing that book
@@ -64,14 +64,14 @@ def borrow_book(books, members, loans):
         "title" : title,
         "member" : member,
         "due_date" : due_date,
-        "status" : "available"
+        "status" : "Available"
     }
 
     # Append loan to loans collection
     loans.append(loan)
 
     # Change book status to Borrowed
-    loan["status"] == "borrowed"
+    loan["status"] == "Borrowed"
 
     # Display success
     print(f"The book '{books['title']}' has been successfully borrowed by member '{members['name']}'.")
