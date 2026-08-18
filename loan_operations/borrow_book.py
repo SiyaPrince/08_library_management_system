@@ -1,79 +1,95 @@
 from support_operations.displayers import display_book, display_member, display_loan
-from book_operations.add_book import book_exists, get_valid_title
-from member_operations.add_member import member_exists, get_valid_name
-from support_operations.selectors import select_member
-from support_operations.selectors import select_book
+from book_operations.add_book import book_exists
+from member_operations.add_member import member_exists
+from support_operations.selectors import select_member, select_book
 from support_operations.generate_id import generate_next_id
 from support_operations.validators import validate_due_date
 
-def get_due_date():
 
+def get_due_date():
     while True:
         due_date = input("Enter due date (YYYY-MM-DD): ").strip()
 
-        # Validate task details
         if validate_due_date(due_date):
             return due_date
-        else:
-            print("Please re-enter the due date.")
+
+        print("Please re-enter the due date.")
+
 
 def borrow_book(books, members, loans):
 
     # Check books exist
-    if book_exists(books, title, author, genre):
+    if not books:
+        print("No books exist.")
         return
-    
+
     # Check members exist
-    if member_exists(members, name, email):
+    if not members:
+        print("No members exist.")
         return
 
     # Select member
     member = select_member(members)
 
-    # Confirm member exists
+    # Cancelled / invalid selection
+    if member is None:
+        return
+
     display_member(member)
-    
-    # Confirm member is Active
-    if member['status'] == 'Active':
-           return
+
+    # Check member is Active
+    if member["status"] != "Active":
+        print("Member is not Active.")
+        return
 
     # Select book
     book = select_book(books)
 
-    # Confirm book exists
+    # Cancelled / invalid selection
+    if book is None:
+        return
+
     display_book(book)
-    
-    
-    # Confirm book is Available
-    if book['status'] == 'Available':
-               return
 
-    # Check member is not already borrowing that book
+    # Check book is Available
+    if book["status"] != "Available":
+        print("Book is not Available.")
+        return
 
-    # Prepare loan data
+    # Check whether there is already an Active loan
+    # for this same member + same book
+    for loan in loans:
+        if (
+            loan["member_id"] == member["id"]
+            and loan["book_id"] == book["id"]
+            and loan["status"] == "Active"
+        ):
+            print("This member already has an Active loan for this book.")
+            return
 
-    loan_id = generate_next_id(loans)
-    title = get_valid_title()
-    member = get_valid_name()
+    # Ask for due date
     due_date = get_due_date()
 
-    # Create loan record
+    # Generate loan ID
+    loan_id = generate_next_id(loans)
 
+    # Create loan
     loan = {
-        "id" : loan_id,
-        "title" : title,
-        "member" : member,
-        "due_date" : due_date,
-        "status" : "Available"
+        "id": loan_id,
+        "book_id": book["id"],
+        "member_id": member["id"],
+        "due_date": due_date,
+        "status": "Active"
     }
 
-    # Append loan to loans collection
+    # Append loan
     loans.append(loan)
 
-    # Change book status to Borrowed
-    loan["status"] == "Borrowed"
+    # Set book status to Borrowed
+    book["status"] = "Borrowed"
 
     # Display success
-    print(f"The book '{books['title']}' has been successfully borrowed by member '{members['name']}'.")
-
-    return
+    print(
+        f"The book '{book['title']}' has been successfully "
+        f"borrowed by member '{member['name']}'."
+    )
