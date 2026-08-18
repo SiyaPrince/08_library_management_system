@@ -1,7 +1,16 @@
 def display_summary(books, members, loans):
+    available_books = sum(book["status"] == "Available" for book in books)
+    borrowed_books = sum(book["status"] == "Borrowed" for book in books)
+    active_members = sum(member["status"] == "Active" for member in members)
+    active_loans = sum(loan["status"] == "Active" for loan in loans)
+
     print("=" * 45)
     print("\nLibrary Summary:")
     print(f"Total Books: {len(books)}")
+    print(f"Available Books: {available_books}")
+    print(f"Borrowed Books: {borrowed_books}")
     print(f"Total Members: {len(members)}")
-    print(f"\nTotal Loans: {len(loans)}")
+    print(f"Active Members: {active_members}")
+    print(f"Total Loans: {len(loans)}")
+    print(f"Active Loans: {active_loans}")
     print("=" * 45)
